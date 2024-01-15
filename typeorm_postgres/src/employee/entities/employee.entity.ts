@@ -1,6 +1,6 @@
 import { BaseEntity } from "src/entities/base.entity";
-import { BeforeInsert, BeforeUpdate, Column, Entity } from "typeorm";
-import bcrypt from 'bcrypt'
+import { BeforeInsert, BeforeUpdate, Column, Entity, Unique } from "typeorm";
+import * as bcrypt from 'bcrypt'
 
 export enum EmployeeRole {
     ADMIN = "admin",
@@ -9,6 +9,7 @@ export enum EmployeeRole {
 }
 
 @Entity()
+@Unique(['username'])
 export class Employee extends BaseEntity {
     @Column({ type: 'varchar', length: 20 }) // varchar: varying character
     username: string;

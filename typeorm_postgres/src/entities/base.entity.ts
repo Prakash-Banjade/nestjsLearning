@@ -13,20 +13,20 @@ export abstract class BaseEntity {
     @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date;
 
-    @Column({ type: 'varchar', length: 300 })
-    createdBy: string;
+    // @Column({ type: 'varchar', length: 300 })
+    // createdBy: string;
 
     @UpdateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
     updatedAt: Date;
 
-    @Column({ type: 'varchar', length: 300 })
-    updatedBy: string;
+    // @Column({ type: 'varchar', length: 300 })
+    // updatedBy: string;
 
-    @DeleteDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-    deletedAt: string;
+    // @DeleteDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+    // deletedAt: string;
 
-    @Column({ type: 'varchar', length: 300 })
-    deletedBy: string;
+    // @Column({ type: 'varchar', length: 300 })
+    // deletedBy: string;
 
     @Column({ type: 'varchar', length: 300, nullable: true })
     internalComment: string | null;

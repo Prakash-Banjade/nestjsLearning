@@ -1,7 +1,6 @@
 import { IsEnum, IsNotEmpty, IsString, Length, Matches } from "class-validator";
-import { EmployeeRole } from "../entities/employee.entity";
-
-const pwdRegex = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
+import { passwordRegex } from "../entities/employee.entity";
+import { EmployeeRole } from "src/types.globalType";
 
 export class CreateEmployeeDto {
     @IsNotEmpty()
@@ -10,7 +9,7 @@ export class CreateEmployeeDto {
 
     @IsNotEmpty()
     @IsString()
-    @Matches(pwdRegex)
+    @Matches(passwordRegex.regExp,)
     @Length(8, 64)
     password: string;
 

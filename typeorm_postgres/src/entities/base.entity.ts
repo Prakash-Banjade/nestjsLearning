@@ -22,8 +22,8 @@ export abstract class BaseEntity {
     // @Column({ type: 'varchar', length: 300 })
     // updatedBy: string;
 
-    // @DeleteDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-    // deletedAt: string;
+    @DeleteDateColumn({ type: 'timestamptz' })
+    deletedAt: string;
 
     // @Column({ type: 'varchar', length: 300 })
     // deletedBy: string;

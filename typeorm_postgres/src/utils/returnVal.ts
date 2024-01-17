@@ -1,0 +1,1 @@
+export const returlVal = (data: any, status: 'success' | 'error' = 'success') => ({ status, data })

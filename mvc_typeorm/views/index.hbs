@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NestJs MVC - Home</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.js" defer></script>
+</head>
+
+<body style="font-family: Arial, Helvetica, sans-serif;">
+    <h1>{{title}}</h1>
+
+    <section class="employees_container">
+        <table>
+            <thead>
+                <tr>
+                    {{#each headings}}
+                    <th>{{this}}</th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#each employees}}
+                <tr>
+                    <td>{{this.sn}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.address}}</td>
+                    <td>{{this.role}}</td>
+                    <td class="contact">{{this.contact}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+    </section>
+</body>
+
+</html>

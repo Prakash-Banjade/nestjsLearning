@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: red;
+    padding: 50px;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+
+    th,
+    td {
+        border: 1px solid #ccc;
+        text-transform: capitalize;
+        padding: 8px 12px;
+    }
+
+    th{
+        text-align: left;
+        background-color: #222;
+    }
+
+    td.contact {
+        text-transform: none;
+    }
+
+    td {
+        color: #ddd;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black;
+        color: white;
+    }
+}

@@ -1,0 +1,1 @@
+alert('This is the record page for employees data. This is directly rendered from server using MVC. This message is populated usign Js.')

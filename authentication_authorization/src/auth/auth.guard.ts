@@ -1,11 +1,11 @@
 import { BadRequestException, CanActivate, ExecutionContext, ForbiddenException, UnauthorizedException } from "@nestjs/common";
-import { Reflector } from "@nestjs/core";
+import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 import { Request } from "express";
 
 export class AuthGuard implements CanActivate {
 
-    constructor(private readonly jwtService: JwtService, private reflector: Reflector) { }
+    constructor(private readonly jwtService: JwtService, readonly configService: ConfigService) { }
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
 
@@ -21,21 +21,22 @@ export class AuthGuard implements CanActivate {
         const req = context.switchToHttp().getRequest();
         const token = this.extractTokenFromHeader(req);
 
-        console.log(token)
+        console.log('token: ', token)
+        console.log('jwtSecret: ', process.env.ACCESS_TOKEN_SECRET)
 
-        if (!token) throw new UnauthorizedException();
+        if (!token) throw new UnauthorizedException('No token');
 
         try {
             const payload = await this.jwtService.verifyAsync(
                 token,
                 {
-                    secret: 'mysecret',
+                    secret: process.env.ACCESS_TOKEN_SECRET,
                 }
             )
 
             req.user = payload;
         } catch (e) {
-            throw new UnauthorizedException();
+            throw new UnauthorizedException('Invalid token');
         }
 
         return true;

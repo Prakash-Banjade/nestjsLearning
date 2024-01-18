@@ -2,6 +2,7 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Post, Request, UseGuards }
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto/signin-auth.dto';
 import { AuthGuard } from './auth.guard';
+import { PayloadUser } from './dto/payloadUser.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -17,7 +18,7 @@ export class AuthController {
 
   @UseGuards(AuthGuard)
   @Get('profile')
-  getProfile(@Request() req){
+  getProfile(@Request() req: Response & { user: PayloadUser }) {
     return req?.user
   }
 }

@@ -25,3 +25,10 @@
 4. Employee `Module`, `Controller` & `Service provider` (employee)
 4. `DTO` of employee, both create & update and find query (employee/dto)
 5. Created `RESTful API` with `query search`, `pagination` 
+
+
+### 3. MVC
+
+1. `HandleBars` configured as view engine.
+2. `views` for view files & `public` to hold static files
+3. `index.hbs` rendered on route '/' that renders employees list

@@ -14,4 +14,14 @@
 7. `Middleware` configuratin, class and function approach (app).
 8. `Rate Limiting` using `nestjs/throttler` (app)
 9. `CORS`
-10. `Global exception filter` & `Global prefix` (main)
+10. `Global exception filter` & `Global prefix` (main)  
+
+  
+### 2. TypeORM_Postgres
+
+1. Configuring `App Data Source` (config) 
+2. Creating `Base Entity` with all common fields (root)
+3. Creating `Employee` entity using different columns types, options, instance method (employee/entities)
+4. Employee `Module`, `Controller` & `Service provider` (employee)
+4. `DTO` of employee, both create & update and find query (employee/dto)
+5. Created `RESTful API` with `query search`, `pagination` 

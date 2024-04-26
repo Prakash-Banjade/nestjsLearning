@@ -13,7 +13,7 @@ export class UsersResolver {
     return this.usersService.create(createUserInput);
   }
 
-  @Query(() => [User], { name: 'users' })
+  @Query(() => [User], { name: 'users' }) // query name is reflected in playground
   findAll() {
     return this.usersService.findAll();
   }

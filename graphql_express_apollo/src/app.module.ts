@@ -12,6 +12,9 @@ import { UsersModule } from './users/users.module';
       driver: ApolloDriver,
       playground: true,
       autoSchemaFile: join(process.cwd(), "src/schema.graphql"), // save all the generated schema in schema.graphql
+      definitions: {
+        path: join(process.cwd(), "src/graphql.ts"),
+      }
     }),
     UsersModule
   ],

@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
+import { User as UserType } from '../graphql'
 
 @Injectable()
 export class UsersService {
-  users = [
+  users: UserType[] = [
     {
       id: 1,
       name: 'John',

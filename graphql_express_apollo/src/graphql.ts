@@ -28,7 +28,7 @@ export interface User {
 
 export interface IQuery {
     users(): User[] | Promise<User[]>;
-    user(id: number): User | Promise<User>;
+    user(id: number): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export interface IMutation {

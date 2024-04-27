@@ -20,10 +20,7 @@ export class UsersService {
 
   create(createUserInput: CreateUserInput) {
     this.users.push(createUserInput)
-    return {
-      success: 'ok',
-      user: createUserInput
-    }
+    return createUserInput
   }
 
   findAll() {

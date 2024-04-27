@@ -8,3 +8,6 @@
 6. GraphQL schemas & types: https://graphql.org/learn/schema/
 7. GraphQL queries: https://graphql.org/learn/queries/
  
+## Things to consider
+
+1. When you first integrate Graphql module, it expects at least one query resolver, else throws error. So first create at least one resolver.

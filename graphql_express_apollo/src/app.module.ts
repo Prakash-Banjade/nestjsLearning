@@ -5,6 +5,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
 import { UsersModule } from './users/users.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { configService } from './config/db.config';
 
 @Module({
   imports: [
@@ -16,6 +18,7 @@ import { UsersModule } from './users/users.module';
         path: join(process.cwd(), "src/graphql.ts"),
       }
     }),
+    TypeOrmModule.forRoot(configService),
     UsersModule
   ],
   controllers: [AppController],

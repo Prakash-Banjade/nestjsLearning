@@ -4,16 +4,12 @@ import { IsEmail, IsInt, IsNotEmpty, IsString } from 'class-validator';
 @InputType()
 export class CreateUserInput {
 
-  @IsInt()
-  @Field(() => Int, { description: 'Primary key' })
-  id: number;
-
-  @IsString()
-  @IsNotEmpty()
-  @Field(() => String, { description: 'User name' })
+  @Field(() => String)
   name: string;
 
-  @IsEmail()
   @Field(() => String)
   email: string;
+
+  @Field(() => String)
+  password: string;
 }

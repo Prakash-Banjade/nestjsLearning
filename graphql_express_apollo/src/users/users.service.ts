@@ -1,56 +1,43 @@
-import { Injectable } from '@nestjs/common';
-import { CreateUserInput } from './dto/create-user.input';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { UpdateUserInput } from './dto/update-user.input';
-import { User as UserType } from '../graphql'
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from './entities/user.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsersService {
-  users: UserType[] = [
-    {
-      id: 1,
-      name: 'John',
-      email: 'j@j.com'
-    },
-    {
-      id: 2,
-      name: 'Lili',
-      email: 'li@li.com',
-    }
-  ]
 
-  create(createUserInput: CreateUserInput) {
-    this.users.push(createUserInput)
-    return createUserInput
+  constructor(
+    @InjectRepository(User) private usersRepository: Repository<User>
+  ) { }
+
+  async findAll() {
+    return await this.usersRepository.find();
   }
 
-  findAll() {
-    return this.users;
+  async findOne(id: string) {
+    const existingUser = await this.usersRepository.findOneBy({ id });
+    if (!existingUser) throw new NotFoundException('User not found');
+
+    return existingUser;
   }
 
-  findOne(id: number) {
-    return this.users.find(user => user.id === id)
+  async update(id: string, updateUserInput: UpdateUserInput) {
+    const existingUser = await this.findOne(id);
+
+    // TODO: finalize how to store image
+
+    Object.assign(existingUser, {
+      name: updateUserInput.name,
+      email: updateUserInput.email,
+      // image: updateUserInput.image
+    });
+
+    return await this.usersRepository.save(existingUser);
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
-    const existingUser = this.users.find(user => user.id === id)
-    if (!existingUser) throw new Error('User not found')
-
-    this.users.forEach(user => {
-      if (user.id === id) {
-        user.name = updateUserInput.name
-        user.email = updateUserInput.name
-      }
-    })
-
-    return updateUserInput
-  }
-
-  remove(id: number) {
-    const existingUser = this.users.find(user => user.id === id)
-    if (!existingUser) throw new Error('User not found')
-
-    this.users = this.users.filter(user => user.id !== id)
-
-    return existingUser
+  async remove(id: string) {
+    const existingUser = await this.findOne(id);
+    return await this.usersRepository.softRemove(existingUser);
   }
 }

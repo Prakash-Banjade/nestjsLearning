@@ -13,6 +13,9 @@ export class Product extends BaseEntity {
     @Column({ type: 'bit varying' })
     description: string;
 
+    @Column({ type: 'varchar' })
+    featuredImage: string;
+
     @ManyToOne(() => Category, category => category.products, { nullable: false, onDelete: 'RESTRICT' })
     category: Category;
 }

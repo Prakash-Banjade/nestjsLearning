@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppApiGatewayController } from './app-api-gateway.controller';
 import { AppApiGatewayService } from './app-api-gateway.service';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [],
+  imports: [UsersModule],
   controllers: [AppApiGatewayController],
   providers: [AppApiGatewayService],
 })

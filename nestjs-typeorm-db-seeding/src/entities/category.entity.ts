@@ -5,7 +5,9 @@ import {
     PrimaryGeneratedColumn,
     TreeChildren,
     TreeParent,
+    OneToMany,
 } from "typeorm"
+import { Product } from "./product.entity"
 
 @Entity()
 @Tree("closure-table", {
@@ -25,4 +27,7 @@ export class Category {
 
     @TreeParent()
     parent: Category
+
+    @OneToMany(() => Product, (product) => product.category)
+    products: Product[]
 }

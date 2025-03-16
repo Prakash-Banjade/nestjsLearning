@@ -1,27 +1,27 @@
 import { Module } from '@nestjs/common';
-import { BillingController } from './billing.controller';
-import { BillingService } from './billing.service';
+import { OrdersController } from './orders.controller';
+import { OrdersService } from './orders.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
   imports: [
     ClientsModule.register([
       {
-        name: 'AUTH_SERVICE',
+        name: 'BILLING_SERVICE',
         transport: Transport.KAFKA,
         options: {
           client: {
             brokers: ['localhost:9092'],
-            clientId: 'auth',
+            clientId: 'billing',
           },
           consumer: {
-            groupId: 'auth-consumer',
+            groupId: 'billing-consumer',
           }
         }
       }
     ]),
   ],
-  controllers: [BillingController],
-  providers: [BillingService],
+  controllers: [OrdersController],
+  providers: [OrdersService]
 })
-export class BillingModule { }
+export class OrdersModule { }
